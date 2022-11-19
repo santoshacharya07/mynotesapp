@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-typedef ClosedDialog = void Function();
+typedef CloseDialog = void Function();
 
-ClosedDialog showLoadingDialog({
+CloseDialog showLoadingDialog({
   required BuildContext context,
   required String text,
 }) {
@@ -16,10 +16,12 @@ ClosedDialog showLoadingDialog({
       ],
     ),
   );
+
   showDialog(
     context: context,
     barrierDismissible: false,
     builder: (context) => dialog,
   );
+
   return () => Navigator.of(context).pop();
 }

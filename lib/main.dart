@@ -6,6 +6,7 @@ import 'package:mycounter/services/auth/bloc/auth_bloc.dart';
 import 'package:mycounter/services/auth/bloc/auth_event.dart';
 import 'package:mycounter/services/auth/bloc/auth_state.dart';
 import 'package:mycounter/services/auth/firebase_auth_provider.dart';
+import 'package:mycounter/views/forget_password_view.dart';
 import 'package:mycounter/views/login_view.dart';
 import 'package:mycounter/views/notes/create_update_note.dart';
 import 'package:mycounter/views/notes/notes_view.dart';
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
         if (state.isLoading) {
           LoadingScreen().show(
             context: context,
-            text: state.loadingText ?? 'Plase wait a momnet',
+            text: state.loadingText ?? 'Please wait a moment',
           );
         } else {
           LoadingScreen().hide();
@@ -55,6 +56,8 @@ class HomePage extends StatelessWidget {
           return const VerifyEmailView();
         } else if (state is AuthStateLoggedOut) {
           return const LoginView();
+        } else if (state is AuthStateForgotPassword) {
+          return const ForgotPasswordView();
         } else if (state is AuthStateRegistering) {
           return const RegisterView();
         } else {

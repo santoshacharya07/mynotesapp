@@ -33,7 +33,10 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
       return;
     }
     final text = _textController.text;
-    await _notesService.updateNote(documentId: note.documentId, text: text);
+    await _notesService.updateNote(
+      documentId: note.documentId,
+      text: text,
+    );
   }
 
   void _setupTextControllerListener() {
@@ -43,11 +46,13 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
 
   Future<CloudNote> createOrGetExistingNote(BuildContext context) async {
     final widgetNote = context.getArgument<CloudNote>();
+
     if (widgetNote != null) {
       _note = widgetNote;
       _textController.text = widgetNote.text;
       return widgetNote;
     }
+
     final existingNote = _note;
     if (existingNote != null) {
       return existingNote;
@@ -70,7 +75,10 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     final note = _note;
     final text = _textController.text;
     if (note != null && text.isNotEmpty) {
-      await _notesService.updateNote(documentId: note.documentId, text: text);
+      await _notesService.updateNote(
+        documentId: note.documentId,
+        text: text,
+      );
     }
   }
 
@@ -98,7 +106,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
               }
             },
             icon: const Icon(Icons.share),
-          )
+          ),
         ],
       ),
       body: FutureBuilder(
